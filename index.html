@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Basic Photo Editor - Adjust Brightness, Contrast, and Apply Filters
+    </title>
+
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&family=Parkinsans:wght@300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Css -->
+    <link rel="stylesheet" id="stylesheet" href="style.css" />
+
+    <!-- Javascript -->
+    <script src="script.js"></script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="pen-solid.svg" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="controls">
+      <div class="upload-image-container">
+        <input
+          type="file"
+          id="upload-image"
+          onchange="uploadImageInput()"
+          accept="image/*"
+        />
+        <label for="upload-image">
+          <h1>Upload</h1>
+          <i class="fa-solid fa-arrow-up-from-bracket"></i>
+        </label>
+      </div>
+      <!-- Brightness -->
+      <div class="single-filter">
+        <div class="filter-label">
+          <h1 class="filter-title">Brightness</h1>
+          <span class="filter-value">100</span>
+        </div>
+        <input
+          type="range"
+          name="brightness"
+          class="filter-slider brightness"
+          oninput="rangeInput(this)"
+          min="0"
+          max="200"
+          value="100"
+        />
+      </div>
+
+      <!-- Contrast -->
+      <div class="single-filter">
+        <div class="filter-label">
+          <h1 class="filter-title">Contrast</h1>
+          <span class="filter-value">100</span>
+        </div>
+        <input
+          type="range"
+          name="contrast"
+          class="filter-slider contrast"
+          oninput="rangeInput(this)"
+          min="0"
+          max="200"
+          value="100"
+        />
+      </div>
+
+      <!-- Saturation -->
+      <div class="single-filter">
+        <div class="filter-label">
+          <h1 class="filter-title">Saturation</h1>
+          <span class="filter-value">100</span>
+        </div>
+        <input
+          type="range"
+          name="saturation"
+          class="filter-slider saturation"
+          oninput="rangeInput(this)"
+          min="0"
+          max="200"
+          value="100"
+        />
+      </div>
+
+      <!-- Grayscale -->
+      <div class="single-filter">
+        <div class="filter-label">
+          <h1 class="filter-title">Grayscale</h1>
+          <span class="filter-value">0</span>
+        </div>
+        <input
+          type="range"
+          name="grayscale"
+          class="filter-slider grayscale"
+          oninput="rangeInput(this)"
+          min="0"
+          max="100"
+          value="0"
+        />
+      </div>
+
+      <!-- Sepia -->
+      <div class="single-filter">
+        <div class="filter-label">
+          <h1 class="filter-title">Sepia</h1>
+          <span class="filter-value">0</span>
+        </div>
+        <input
+          type="range"
+          name="sepia"
+          class="filter-slider sepia"
+          oninput="rangeInput(this)"
+          min="0"
+          max="100"
+          value="0"
+        />
+      </div>
+
+      <!-- Invert -->
+      <div class="single-filter">
+        <div class="filter-label">
+          <h1 class="filter-title">Invert</h1>
+          <span class="filter-value">0</span>
+        </div>
+        <input
+          type="range"
+          name="invert"
+          class="filter-slider invert"
+          oninput="rangeInput(this)"
+          min="0"
+          max="100"
+          value="0"
+        />
+      </div>
+
+      <!-- Blur -->
+      <div class="single-filter">
+        <div class="filter-label">
+          <h1 class="filter-title">Blur</h1>
+          <span class="filter-value">0</span>
+        </div>
+        <input
+          type="range"
+          name="blur"
+          class="filter-slider blur"
+          oninput="rangeInput(this)"
+          min="0"
+          max="10"
+          value="0"
+          step="0.1"
+        />
+      </div>
+
+      <!-- Hue Rotate -->
+      <div class="single-filter">
+        <div class="filter-label">
+          <h1 class="filter-title">Hue Rotate</h1>
+          <span class="filter-value">0</span>
+        </div>
+        <input
+          type="range"
+          name="hue-rotate"
+          class="filter-slider hue-rotate"
+          oninput="rangeInput(this)"
+          min="0"
+          max="360"
+          value="0"
+        />
+      </div>
+
+      <!-- Opacity -->
+      <div class="single-filter">
+        <div class="filter-label">
+          <h1 class="filter-title">Opacity</h1>
+          <span class="filter-value">100</span>
+        </div>
+        <input
+          type="range"
+          name="opacity"
+          class="filter-slider opacity"
+          oninput="rangeInput(this)"
+          min="0"
+          max="100"
+          value="100"
+        />
+      </div>
+
+      <!-- Download and Swipe Buttons -->
+      <div class="btns-container">
+        <!-- <button class="download-image" onclick="downloadImage()">
+          download
+        </button> -->
+        <button class="reset-image" onclick="resetFilters()">reset</button>
+      </div>
+      <button class="swip-button" onclick="swipBtn()">
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+
+    <div class="preview-container">
+      <div class="preview-image-container">
+        <img class="png-bg" src="pngBg.jpg" alt="" />
+        <!-- <img class="preview-img" src="Preview.jpg" alt="" /> -->
+        <img class="preview-img" src="" alt="" />
+      </div>
+    </div>
+  </body>
+</html>
